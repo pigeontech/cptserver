@@ -1,0 +1,1 @@
+echo -e "\n\nSetting up the development environment...\n\n"
