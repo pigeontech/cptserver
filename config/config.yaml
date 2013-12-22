@@ -1,0 +1,12 @@
+vagrant:
+  box: "precise32"
+  box_url: "http://files.vagrantup.com/precise32.box"
+  box_port: 8080
+  box_ip: "10.0.0.123"
+  ssh_shell: "bash -c 'BASH_ENV=/etc/profile exec bash'"
+  ssh_username: "vagrant"
+  vm_name: "cptserver"
+  vm_memory: "512"
+  vm_cpu: "50"
+  vm_webroot: "www"
+  vm_hostname: "localhost"
