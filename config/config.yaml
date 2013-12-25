@@ -1,12 +1,51 @@
 vagrant:
-  box: "precise32"
-  box_url: "http://files.vagrantup.com/precise32.box"
+  box: precise32
+  box_url: http://files.vagrantup.com/precise32.box
   box_port: 8080
-  box_ip: "10.0.0.123"
-  ssh_shell: "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  ssh_username: "vagrant"
-  vm_name: "cptserver"
-  vm_memory: "512"
-  vm_cpu: "50"
-  vm_webroot: "www"
-  vm_hostname: "localhost"
+  box_ip: 10.0.0.123
+  ssh_shell: bash -c 'BASH_ENV=/etc/profile exec bash'
+  ssh_username: vagrant
+  vm_name: cptserver
+  vm_memory: 512
+  vm_cpu: 50
+  vm_webroot: www
+  vm_docroot: /var/www
+  vm_hostname: localhost
+syspackages:
+  - build-essential
+  - git
+  - curl
+  - php5-dev
+  - php-pear
+apachemodules:
+  - rewrite
+phpmodules:
+  - php5-cli
+  - php5-mysql
+  - php5-sqlite
+  - php5-imagick
+  - php5-mcrypt
+  - php5-imap
+  - php5-curl
+  - php5-gd
+  - php5-xmlrpc
+  - php5-xdebug
+  - libapache2-mod-php5
+xdebug:
+  - xdebug.remote_enable = 1
+  - xdebug.remote_host = localhost
+  - xdebug.remote_port = 9000
+  - xdebug.remote_handler = dbgp
+  - xdebug.remote_mode = req
+  - xdebug.profiler_enable = 0
+  - xdebug.profiler_output_dir = /tmp
+  - xdebug.profiler_output_name = cachegrind.out.%t.%p
+vhosts:
+  -
+    servername: localhost
+    serveraliases: localhost.dev www.localhost.dev default default.dev www.default.dev
+    directory: /default
+  -
+    servername: wordpress.dev
+    serveraliases: www.wordpress.dev
+    directory: /wordpress

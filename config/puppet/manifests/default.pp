@@ -6,7 +6,10 @@ Exec
   path => ["/usr/bin", "/bin", "/usr/sbin", "/sbin", "/usr/local/bin", "/usr/local/sbin"]
 }
 
+
 ####################################
 ### Includes
 ####################################
-#include <modulename>
+include syspackages
+include apache
+include php
