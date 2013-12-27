@@ -26,7 +26,7 @@ class php
 		returns => [ 0, 1, '', ' ']
 	}
 
-	file {'/etc/php5/conf.d/custom.ini':
+	file {'/etc/php5/mods-available/custom.ini':
 		ensure => present,
 		owner => root, group => root, mode => 644,
 		require => Package["php"],

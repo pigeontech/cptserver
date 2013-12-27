@@ -7,7 +7,7 @@ class apache
 		"apache":
 		name => "apache2",
 		ensure => latest,
-		require => [Package[split($syspackages,',')], Exec["apt-get update"]]
+		require => Exec['ppa:ondrej/php5'],
 	}
 
 	service

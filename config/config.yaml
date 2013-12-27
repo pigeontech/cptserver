@@ -13,6 +13,9 @@ vagrant:
   vm_hostname: localhost
 syspackages:
   - build-essential
+  - python-software-properties
+  - openssl
+  - unzip
   - git
   - curl
   - php5-dev
