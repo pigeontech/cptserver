@@ -45,10 +45,10 @@ xdebug:
   - xdebug.profiler_output_name = cachegrind.out.%t.%p
 vhosts:
   -
-    servername: localhost
-    serveraliases: localhost.dev www.localhost.dev default default.dev www.default.dev
-    directory: /default
+    ServerName: localhost
+    ServerAlias: localhost.dev www.localhost.dev default default.dev www.default.dev
+    DocumentRoot: /var/www/default
   -
-    servername: wordpress.dev
-    serveraliases: www.wordpress.dev
-    directory: /wordpress
+    ServerName: wordpress.dev
+    ServerAlias: www.wordpress.dev
+    DocumentRoot: /var/www/wordpress

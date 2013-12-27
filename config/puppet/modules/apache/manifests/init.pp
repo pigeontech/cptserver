@@ -18,7 +18,7 @@ class apache
 		require => Package["apache"],
 		subscribe => [
       		File["/etc/apache2/mods-enabled/rewrite.load"],
-      		File["/etc/apache2/sites-available/default"]
+      		File["/etc/apache2/sites-available/000-default.conf"]
     	],
 	}
 
@@ -32,9 +32,10 @@ class apache
 
 	file
 	{
-		"/etc/apache2/sites-available/default":
+		"/etc/apache2/sites-available/000-default.conf":
 		ensure => present,
 		require => Package['apache'],
+		content => $vhosts
 	}
 
 	define apache::loadmodule () {

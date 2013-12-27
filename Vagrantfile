@@ -3,7 +3,14 @@
 ####################################
 require 'yaml'
 vconfig = YAML::load_file("config/config.yaml")
-#print vconfig['vhosts'][1]["directory"]
+vhosts = ""
+vconfig['vhosts'].each_with_index do |v, k|
+	vhosts = vhosts + "<VirtualHost *:80>\n"
+	v.each_with_index do |val, key|
+		vhosts = vhosts + "\t" + val.join(' ') + "\n"
+	end
+	vhosts = vhosts + "</VirtualHost>\n"
+end
 
 ####################################
 ### Running Vagrant
@@ -53,6 +60,7 @@ Vagrant.configure("2") do |config|
 			"syspackages" => vconfig['syspackages'].join(','),
 			"phpmodules" => vconfig['phpmodules'].join(','),
 			"apachemodules" => vconfig['apachemodules'].join(','),
+			"vhosts" => vhosts,
 			"xdebug" => vconfig['xdebug'].join("\n")+"\n"
 		}
 		puppet.options = "--verbose"
