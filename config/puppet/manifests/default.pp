@@ -13,3 +13,5 @@ Exec
 include syspackages
 include apache
 include php
+include mysql
+include phpmyadmin

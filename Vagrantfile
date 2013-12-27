@@ -61,7 +61,8 @@ Vagrant.configure("2") do |config|
 			"phpmodules" => vconfig['phpmodules'].join(','),
 			"apachemodules" => vconfig['apachemodules'].join(','),
 			"vhosts" => vhosts,
-			"xdebug" => vconfig['xdebug'].join("\n")+"\n"
+			"xdebug" => vconfig['xdebug'].join("\n")+"\n",
+			"password" => vconfig['mysql']['password']
 		}
 		puppet.options = "--verbose"
 		puppet.manifests_path = "config/puppet/manifests"
