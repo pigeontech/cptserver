@@ -17,7 +17,7 @@ Installation
  * Git - http://git-scm.com/downloads
  * Go to your project folder, open a terminal/command promt, and type `git clone https://github.com/pigeontech/cptserver.git`.
  * This creates a copy on your computer.
-3 Open the config/config.yaml file in a text editor, and change anything that you feel needs changed. Right now, the only thing that probably matters is the mysql password. You can add virtual hosts later.  Also, if your computer is already using port 80, like if you run a media server to stream movies to your TV, you might need to change port 80 to something else, like 8080.
+3. Open the config/config.yaml file in a text editor, and change anything that you feel needs changed. Right now, the only thing that probably matters is the mysql password. You can add virtual hosts later.  Also, if your computer is already using port 80, like if you run a media server to stream movies to your TV, you might need to change port 80 to something else, like 8080.
 4. Open a terminal in the repository folder. If the terminal is still open from the last step, just type `cd cptserver`.
 5. Now type `vagrant up`.
  * It will streamline the entire process for you, from creating the virtual machine to 
