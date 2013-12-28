@@ -1,1 +1,1 @@
-echo -e "\n\nSetting up the development environment...\n\n"
+cat /vagrant/config/shell/info.txt

@@ -1,7 +1,6 @@
 ### Project ###
 www/*
 !www/default/
-database/*
 
 ### Vagrant ###
 .vagrant

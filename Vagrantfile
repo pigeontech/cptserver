@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
 	config.vm.network "private_network", ip: vconfig['vagrant']['box_ip']
 	config.vm.hostname = vconfig['vagrant']['vm_hostname']
 	config.vm.network "forwarded_port", guest: 80, host: vconfig['vagrant']['box_port']
+	config.vm.network "forwarded_port", guest: 3306, host: vconfig['mysql']['port']
 	config.vm.synced_folder vconfig['vagrant']['vm_webroot'], vconfig['vagrant']['vm_docroot'], :owner => "vagrant", :group => "www-data", :mount_options => ["dmode=777","fmode=777"]
   
 	####################################
@@ -67,6 +68,6 @@ Vagrant.configure("2") do |config|
 		puppet.options = "--verbose"
 		puppet.manifests_path = "config/puppet/manifests"
 		puppet.manifest_file = "default.pp"
-		puppet.module_path = "config/puppet/modules"
+		#puppet.module_path = "config/puppet/modules"
 	end
 end

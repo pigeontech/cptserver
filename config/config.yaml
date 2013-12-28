@@ -1,13 +1,13 @@
 vagrant:
   box: precise32
   box_url: http://files.vagrantup.com/precise32.box
-  box_port: 8080
+  box_port: 80
   box_ip: 10.0.0.123
   ssh_shell: bash -c 'BASH_ENV=/etc/profile exec bash'
   ssh_username: vagrant
   vm_name: cptserver
   vm_memory: 512
-  vm_cpu: 50
+  vm_cpu: 80
   vm_webroot: www
   vm_docroot: /var/www
   vm_hostname: localhost
@@ -23,6 +23,7 @@ syspackages:
 apachemodules:
   - rewrite
 mysql:
+  port: 3306
   password: asdf
 phpmodules:
   - php5-cli
