@@ -38,11 +38,14 @@ phpmodules:
   - php5-xdebug
   - libapache2-mod-php5
 xdebug:
+  - zend_extension=/usr/lib/php5/20121212/xdebug.so
   - xdebug.remote_enable = 1
   - xdebug.remote_host = localhost
   - xdebug.remote_port = 9000
+  - xdebug.remote_connect_back = 1
   - xdebug.remote_handler = dbgp
   - xdebug.remote_mode = req
+  - xdebug.remote_log = /tmp/php5-xdebug.log
   - xdebug.profiler_enable = 0
   - xdebug.profiler_output_dir = /tmp
   - xdebug.profiler_output_name = cachegrind.out.%t.%p

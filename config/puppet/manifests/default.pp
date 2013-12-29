@@ -65,7 +65,8 @@ service
 	require => Package["apache"],
 	subscribe => [
   		File["/etc/apache2/mods-enabled/rewrite.load"],
-  		File["/etc/apache2/sites-available/000-default.conf"]
+  		File["/etc/apache2/sites-available/000-default.conf"],
+  		File["/etc/php5/mods-available/xdebug.ini"]
 	],
 }
 
@@ -133,11 +134,12 @@ exec
 # Add some custom ini settings to override php.ini
 file
 {
-	'/etc/php5/mods-available/custom.ini':
+	'/etc/php5/mods-available/xdebug.ini':
 	ensure => present,
 	require => Package["php"],
 	content => $xdebug
 }
+
 
 ####################################
 ### MySQL
