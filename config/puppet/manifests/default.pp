@@ -131,7 +131,9 @@ exec
 }
 
 # Add some custom ini settings to override php.ini
-file {'/etc/php5/mods-available/custom.ini':
+file
+{
+	'/etc/php5/mods-available/custom.ini':
 	ensure => present,
 	require => Package["php"],
 	content => $xdebug
@@ -140,6 +142,8 @@ file {'/etc/php5/mods-available/custom.ini':
 ####################################
 ### MySQL
 ####################################
+
+$sqlaccess = "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$password';\nFLUSH PRIVILEGES;"
 
 # Install MySQL server
 package 
@@ -163,7 +167,11 @@ service
 	"mysql":
     enable => true,
 	ensure => running,
-	require => Package['mysql-server']
+	require => Package['mysql-server'],
+	subscribe => [
+  		File["/etc/mysql/my.cnf"],
+  		File["/etc/mysql/remote.sql"]
+	],
 }
 
 # If it's the first run, set the password from config
@@ -175,11 +183,29 @@ exec
 	require => Service['mysql']
 }
 
+# Make sure bind-address is commented out
 exec
 { 
 	"bind-address":
 	command => 'sed -i "s/^bind-address/#bind-address/" /etc/mysql/my.cnf',
-	require => Package['mysql-server']
+	require => [Package['mysql-server'], File["/etc/mysql/my.cnf"]]
+}
+
+# Declare file resource so the service can subscribe to changes
+file
+{
+	'/etc/mysql/my.cnf':
+	ensure => present,
+	require => Package["mysql-server"]
+}
+
+# Create an SQL file that we need.
+file
+{
+	'/etc/mysql/remote.sql':
+	ensure => present,
+	require => Package["mysql-server"],
+	content => $sqlaccess
 }
 
 ####################################
@@ -203,13 +229,3 @@ file
 	require => Package['phpmyadmin'],
 	notify => Service['apache2']
 }
-
-
-####################################
-### Includes
-####################################
-#include syspackages
-#include apache
-#include php
-#include mysql
-#include phpmyadmin

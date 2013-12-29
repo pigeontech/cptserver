@@ -3,6 +3,8 @@
 ####################################
 require 'yaml'
 vconfig = YAML::load_file("config/config.yaml")
+
+# Handle vhosts
 vhosts = ""
 vconfig['vhosts'].each_with_index do |v, k|
 	vhosts = vhosts + "<VirtualHost *:80>\n"
@@ -63,11 +65,23 @@ Vagrant.configure("2") do |config|
 			"apachemodules" => vconfig['apachemodules'].join(','),
 			"vhosts" => vhosts,
 			"xdebug" => vconfig['xdebug'].join("\n")+"\n",
-			"password" => vconfig['mysql']['password']
+			"password" => vconfig['mysql']['password'],
 		}
 		puppet.options = "--verbose"
 		puppet.manifests_path = "config/puppet/manifests"
 		puppet.manifest_file = "default.pp"
 		#puppet.module_path = "config/puppet/modules"
 	end
+
+	####################################
+	### Run SQL
+	####################################
+	config.vm.provision "shell",
+    inline: "mysql -uroot -p"+vconfig['mysql']['password']+" < '/etc/mysql/remote.sql'"
+	
+	####################################
+	### Ready
+	####################################
+	config.vm.provision "shell",
+    inline: "echo ###########################\n# It's Ready!\n###########################"
 end
