@@ -24,7 +24,7 @@ apachemodules:
   - rewrite
 mysql:
   port: 3306
-  password: asdf
+  password: vagrant
 phpmodules:
   - php5-cli
   - php5-mysql
