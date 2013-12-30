@@ -63,31 +63,32 @@ Composer is a dependency manager for common libraries, such as the popular Larav
 2. Type `curl -sS https://getcomposer.org/installer | php`.  This will download a file named `composer.phar` into your `mywebsite` folder, right next to where your `index.php` lives.
 3. Create a `composer.json` file in the same place containing the following:
 
-```
-{
-    "require-dev": {
-        "phpunit/phpunit": "3.7.14"
-    }
-}
-```
-Don't make things difficult. You don't have to use Vi or Nano to create and edit this file. You can do this step on your normal computer with Sublime Text, Notepad, etc. Remember that the www folder is shared between your computer and the vm. Changes to one happen to both. That's the whole point of using Vagrant!
+ ```
+ {
+     "require-dev": {
+         "phpunit/phpunit": "3.7.14"
+     }
+ }
+ ```
+
+ Don't make things difficult. You don't have to use Vi or Nano to create and edit this file. You can do this step on your normal computer with Sublime Text, Notepad, etc. Remember that the www folder is shared between your computer and the vm. Changes to one happen to both. That's the whole point of using Vagrant!
 4. Back to the terminal, type `php composer.phar install`. This will create a `venders` folder, download all of the software packages you specified in the json file, and also download their dependencies. For example, if you specify PHPUnit as above, it will also download a Symfony package that it relies on.  Now your folder looks like this:
 
-```
-- \var\www\mywebsite
--- vendor
--- composer.json
--- composer.lock
--- composer.phar
--- index.php
-
-- \var\www\mywebsite\vendor
--- bin
--- composer
--- phpunit
--- symfony
--- autoload.php
-```
+ ```
+ - \var\www\mywebsite
+ -- vendor
+ -- composer.json
+ -- composer.lock
+ -- composer.phar
+ -- index.php
+ 
+ - \var\www\mywebsite\vendor
+ -- bin
+ -- composer
+ -- phpunit
+ -- symfony
+ -- autoload.php
+ ```
 5. Now in your index.php file, you'd put something like `require 'vendor/autoload.php';`.
 6. Keep in mind that you need to do all of these steps for each website you build. Composer is dependency managment on a per project basis. So if you create another website, like `\var\www\lolcatspics`, it will need its own composer.phar, composor.json, vendors, etc. 
 7. Visit the following websites to learn more about fitting these tools into your workflow:
