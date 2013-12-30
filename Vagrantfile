@@ -83,5 +83,5 @@ Vagrant.configure("2") do |config|
 	### Ready
 	####################################
 	config.vm.provision "shell",
-    inline: "echo ###########################\n# It's Ready!\n###########################"
+    inline: "cat /vagrant/config/shell/ready.txt"
 end
