@@ -231,3 +231,15 @@ file
 	require => Package['phpmyadmin'],
 	notify => Service['apache2']
 }
+
+####################################
+### Composer
+####################################
+
+# Download
+exec
+{ 
+	"composer":
+	command => "curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer",
+	require => Package['php']
+}

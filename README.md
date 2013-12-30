@@ -7,6 +7,16 @@ Virtualbox is software that lets you create virtual machines, allowing you to ru
 
 All together, this creates an Ubuntu LAMP webserver that can be run on your current computer, whether it be Windows, Apple OSX, or Linux itself. Many developers prefer this type of environment instead of installing something like WAMP, XAMPP, or MAMP. One major benefit is that it doesn't interfere with your current computer. Another is that when on a team or in a class, everybody could be developing on the exact same environment with the same versions of all software.
 
+Features
+--------
+
+* It uses a single config file for everything. No need to dig into Puppet code to customize.
+* It adds a repository that will give you the latest PHP (5.5+) and Apache (2.4+).
+* It installs phpMyAdmin for you so that you can manage databases.
+* It also configures MySQL so that you can use local DB software on your computer, like MySQL Workbench.
+* It installs Composer globally in your path for you to easily manage PHP dependencies.
+* It installs and configures Xdebug so that you may debug with local IDEs, like PHPStorm and Netbeans.
+
 Installation
 --------
 
@@ -60,8 +70,7 @@ Composer
 Composer is a dependency manager for common libraries, such as the popular Laravel framework, or the PHPUnit testing library.  It will automatically download the latest/specified version of them, as well as any dependencies that they rely on.  It will then create an autoload.php file, which you include into your actual project to load the library and dependencies.  Composer, like Git, is one of those technologies that separates the new school from the old school.  Don't get left behind! It's more important than ever for web developers to become familiar with these command line tools.
 
 1. Log in via `vagrant ssh` and navigate to your website folder, such as `cd /var/www/mywebsite`.
-2. Type `curl -sS https://getcomposer.org/installer | php`.  This will download a file named `composer.phar` into your `mywebsite` folder, right next to where your `index.php` lives.
-3. Create a `composer.json` file in the same place containing the following:
+2. Create a `composer.json` file in the same place containing the following:
 
  ```
  {
@@ -72,7 +81,7 @@ Composer is a dependency manager for common libraries, such as the popular Larav
  ```
 
  Don't make things difficult. You don't have to use Vi or Nano to create and edit this file. You can do this step on your normal computer with Sublime Text, Notepad, etc. Remember that the www folder is shared between your computer and the vm. Changes to one happen to both. That's the whole point of using Vagrant!
-4. Back to the terminal, type `php composer.phar install`. This will create a `venders` folder, download all of the software packages you specified in the json file, and also download their dependencies. For example, if you specify PHPUnit as above, it will also download a Symfony package that it relies on.  Now your folder looks like this:
+3. Back to the terminal, type `composer install`. This will create a `vendor` folder, download all of the software packages you specified in the json file, and also download their dependencies. For example, if you specify PHPUnit as above, your project and vendor folder will look like this:
 
  ```
  - \var\www\mywebsite
@@ -89,8 +98,9 @@ Composer is a dependency manager for common libraries, such as the popular Larav
  -- symfony
  -- autoload.php
  ```
-5. Now in your index.php file, you'd put something like `require 'vendor/autoload.php';`.
-6. Keep in mind that you need to do all of these steps for each website you build. Composer is dependency managment on a per project basis. So if you create another website, like `\var\www\lolcatspics`, it will need its own composer.phar, composor.json, vendors, etc. 
-7. Visit the following websites to learn more about fitting these tools into your workflow:
+4. Now in your index.php file, you'd put something like `require 'vendor/autoload.php';`.
+5. Keep in mind that you need to do all of these steps for each website you build. Composer is dependency managment on a per project basis. So if you create another website, like `\var\www\lolcatpics`, it will need its own composor.json, and you'll need to run `composer install` in that directory, and a vendor folder will be created.
+6. Visit the following websites to learn more about fitting these tools into your workflow:
+ * http://daylerees.com/composer-primer
  * https://www.digitalocean.com/community/articles/how-to-install-and-use-composer-on-your-vps-running-ubuntu 
  * https://jtreminio.com/2013/03/unit-testing-tutorial-introduction-to-phpunit/
