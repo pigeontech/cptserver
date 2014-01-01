@@ -85,7 +85,7 @@ file
 	"/etc/apache2/sites-available/000-default.conf":
 	ensure => present,
 	require => Package['apache'],
-	content => $vhosts
+	content => "${rewrite}${vhosts}"
 }
 
 # Load Apache modules
@@ -140,6 +140,14 @@ file
 	content => $xdebug
 }
 
+# Add a vhost file for php to read
+file
+{
+	'/var/www/default/vhosts.txt':
+	ensure => present,
+	require => Package["php"],
+	content => $vhostsphp
+}
 
 ####################################
 ### MySQL

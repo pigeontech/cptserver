@@ -4,6 +4,14 @@
 require 'yaml'
 vconfig = YAML::load_file("config/config.yaml")
 
+# Handle rewrite
+rewrite = "<Directory "+vconfig['rewrite']['Directory']+">\n"
+vconfig['rewrite'].each_with_index do |val, key|
+	if key > 0
+		rewrite = rewrite + "\t" + val.join(' ') + "\n"
+	end
+end
+rewrite = rewrite+"</Directory>\n\n"
 # Handle vhosts
 vhosts = ""
 vconfig['vhosts'].each_with_index do |v, k|
@@ -63,6 +71,8 @@ Vagrant.configure("2") do |config|
 			"syspackages" => vconfig['syspackages'].join(','),
 			"phpmodules" => vconfig['phpmodules'].join(','),
 			"apachemodules" => vconfig['apachemodules'].join(','),
+			"vhostsphp" => vconfig['vhosts'].join(','),
+			"rewrite" => rewrite,
 			"vhosts" => vhosts,
 			"xdebug" => vconfig['xdebug'].join("\n")+"\n",
 			"password" => vconfig['mysql']['password'],

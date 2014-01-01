@@ -20,6 +20,7 @@ syspackages:
   - curl
   - php5-dev
   - php-pear
+  - libyaml-dev  
 apachemodules:
   - rewrite
 mysql:
@@ -49,6 +50,12 @@ xdebug:
   - xdebug.profiler_enable = 0
   - xdebug.profiler_output_dir = /tmp
   - xdebug.profiler_output_name = cachegrind.out.%t.%p
+rewrite:
+  Directory: /var/www/
+  Options: Indexes FollowSymLinks MultiViews
+  AllowOverride: FileInfo
+  Order: allow,deny
+  Allow: from all
 vhosts:
   -
     ServerName: localhost
