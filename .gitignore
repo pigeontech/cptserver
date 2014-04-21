@@ -40,3 +40,4 @@ build.properties
 *.sublime-workspace
 
 # Much credit to http://gitignore.io for many of these
+www/default/vhosts.txt

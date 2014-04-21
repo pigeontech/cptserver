@@ -10,10 +10,13 @@
 <p>
 	The installation was successful!
 </p>
+<p>You can also log into your server through SSH with any client you like.</p>
+<p>Username and password is 'vagrant', and the host is 127.0.0.1</p>
+<p>You can upgrade to Ubuntu 14.x when you log in through SSH, but you will then need to manually modify server settings again.</p>
 <h3>Useful Links</h3>
 <ul>
 	<li><a href="phpinfo.php">PHP Info</a> - View information about the software on this server.</li>
-	<li><a href="phpmyadmin">phpMyAdmin</a> - Create and manage databases.</li>
+	<li><a href="phpmyadmin">phpMyAdmin</a> - Create and manage databases. (Username: root | Password: vagrant)</li>
 </ul>
 
 <h3>Your Websites</h3>

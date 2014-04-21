@@ -1,6 +1,6 @@
 vagrant:
-  box: precise32
-  box_url: http://files.vagrantup.com/precise32.box
+  box: parallels/ubuntu-13.10
+  box_url: https://vagrantcloud.com/parallels/ubuntu-13.10
   box_port: 80
   box_ip: 10.0.0.123
   ssh_shell: bash -c 'BASH_ENV=/etc/profile exec bash'
@@ -20,7 +20,7 @@ syspackages:
   - curl
   - php5-dev
   - php-pear
-  - libyaml-dev  
+  - libyaml-dev
 apachemodules:
   - rewrite
 mysql:

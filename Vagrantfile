@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 	config.vm.hostname = vconfig['vagrant']['vm_hostname']
 	config.vm.network "forwarded_port", guest: 80, host: vconfig['vagrant']['box_port']
 	config.vm.network "forwarded_port", guest: 3306, host: vconfig['mysql']['port']
-	config.vm.synced_folder vconfig['vagrant']['vm_webroot'], vconfig['vagrant']['vm_docroot'], :owner => "vagrant", :group => "www-data", :mount_options => ["dmode=777","fmode=777"]
+	config.vm.synced_folder vconfig['vagrant']['vm_webroot'], vconfig['vagrant']['vm_docroot'], type: 'nfs', :owner => "vagrant", :group => "www-data", :mount_options => ["dmode=777","fmode=777"]
   
 	####################################
 	### VirtualBox Provider

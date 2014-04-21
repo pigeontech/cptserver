@@ -18,6 +18,14 @@ exec
 	command => "apt-get update",
 }
 
+# Install Software-Properties package. Needed for U13.10
+package
+{
+	"software-properties-common":
+	name => "software-properties-common",
+	ensure => latest,
+}
+
 # Install system packages
 package
 {

@@ -1,7 +1,7 @@
 cptserver
 =========
 
-A student web development environment using Vagrant, Virtualbox, and Puppet.
+A web development environment using Ubuntu Server 13.10 x86_64, Vagrant, Virtualbox, and Puppet.
 
 Virtualbox is software that lets you create virtual machines, allowing you to run another operating system in a sandbox. Vagrant is used to customize, load, and access that virtual machine. Once it's running, Puppet is used to manage the software on the virtual machine.  Puppet makes sure things like Apache and MySQL are installed, running as a service, configured properly, and restarted when necessary.
 
@@ -11,6 +11,7 @@ Features
 --------
 
 * It uses a single config file for everything. No need to dig into Puppet code to customize.
+* Chef and Puppet provisioners are pre-installed.
 * It adds a repository that will give you the latest PHP (5.5+) and Apache (2.4+).
 * It installs phpMyAdmin for you so that you can manage databases.
 * It also configures MySQL so that you can use local DB software on your computer, like MySQL Workbench.
@@ -23,15 +24,20 @@ Installation
 1. First, install Virtualbox, then Vagrant. You don't need Puppet on your host computer; it will exist on the linux virtual machine.
  * Virtualbox - https://www.virtualbox.org/wiki/Downloads
  * Vagrant - http://www.vagrantup.com/
+
 2. Next, download this repository. You could just download the .zip file and extract it where you keep your work, but cloning with Git is preferred. If you haven't learned Git yet, you really should.
  * Git - http://git-scm.com/downloads
  * Go to your project folder (on Windows, it's probably something like 'C:\Users\Scott\Documents\'), open a terminal/command promt, and type `git clone https://github.com/pigeontech/cptserver.git`.
  * This creates a copy on your computer, like 'C:\Users\Scott\Documents\cptserver\'.  Go into that folder.
+
 3. Open the config/config.yaml file in a text editor, and change anything that you feel needs changed. Right now, the only thing that probably matters is the mysql password. You can add virtual hosts later.  Also, if your computer is already using port 80, like if you run a media server to stream movies to your TV, you might need to change port 80 to something else, like 8080.
+
 4. Open a terminal in the repository folder. If the terminal is still open from the Git step, just type `cd cptserver`.
+
 5. Now type `vagrant up`.
  * It will streamline the entire process for you, from creating the virtual machine to installing PHP and its modules.
  * The first time you run it, it will be slow, because it must download and install a linux box, which is a few hundred mb.
+ 
 6. It's ready. Inside the `www/default/` folder is a sample website. Open your browser and go to `http://localhost` and see if it works. Check out `http://localhost/phpmyadmin` as well, and try logging with the username `root` and the password you set in the config.yaml file.  If you changed the port, these URLs would look like `http://localhost:8080` and `http://localhost:8080/phpmyadmin`.
 
 Virtual Hosts
@@ -70,6 +76,7 @@ Composer
 Composer is a dependency manager for common libraries, such as the popular Laravel framework, or the PHPUnit testing library.  It will automatically download the latest/specified version of them, as well as any dependencies that they rely on.  It will then create an autoload.php file, which you include into your actual project to load the library and dependencies.  Composer, like Git, is one of those technologies that separates the new school from the old school.  Don't get left behind! It's more important than ever for web developers to become familiar with these command line tools.
 
 1. Log in via `vagrant ssh` and navigate to your website folder, such as `cd /var/www/mywebsite`.
+
 2. Create a `composer.json` file in the same place containing the following:
 
  ```
@@ -81,6 +88,7 @@ Composer is a dependency manager for common libraries, such as the popular Larav
  ```
 
  Don't make things difficult. You don't have to use Vi or Nano to create and edit this file. You can do this step on your normal computer with Sublime Text, Notepad, etc. Remember that the www folder is shared between your computer and the vm. Changes to one happen to both. That's the whole point of using Vagrant!
+
 3. Back to the terminal, type `composer install`. This will create a `vendor` folder, download all of the software packages you specified in the json file, and also download their dependencies. For example, if you specify PHPUnit as above, your project and vendor folder will look like this:
 
  ```
@@ -99,7 +107,9 @@ Composer is a dependency manager for common libraries, such as the popular Larav
  -- autoload.php
  ```
 4. Now in your index.php file, you'd put something like `require 'vendor/autoload.php';`.
+
 5. Keep in mind that you need to do all of these steps for each website you build. Composer is dependency managment on a per project basis. So if you create another website, like `\var\www\lolcatpics`, it will need its own composor.json, and you'll need to run `composer install` in that directory, and a vendor folder will be created.
+
 6. Visit the following websites to learn more about fitting these tools into your workflow:
  * http://daylerees.com/composer-primer
  * https://www.digitalocean.com/community/articles/how-to-install-and-use-composer-on-your-vps-running-ubuntu 
