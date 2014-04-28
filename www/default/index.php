@@ -42,7 +42,7 @@
 		}
 	?>
 </ul>
-<em>After adding vhosts to config.yaml and your computer's hosts file, don't forget to run the command "vagrant up"</em>
+<em>After adding vhosts to config.yaml and your computer's hosts file, don't forget to run the command "vagrant provision"</em>
 
 </body>
 </html>

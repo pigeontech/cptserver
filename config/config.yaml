@@ -1,7 +1,11 @@
+####################################
+### Virtual Machine
+####################################
 vagrant:
   box: precise32
   box_url: http://files.vagrantup.com/precise32.box
   box_port: 80
+  box_port_ssl: 443
   box_ip: 10.0.0.123
   ssh_shell: bash -c 'BASH_ENV=/etc/profile exec bash'
   ssh_username: vagrant
@@ -11,21 +15,26 @@ vagrant:
   vm_webroot: www
   vm_docroot: /var/www
   vm_hostname: localhost
+
+####################################
+### Ubuntu Linux
+####################################
 syspackages:
   - build-essential
-  - python-software-properties
   - openssl
   - unzip
   - git
   - curl
   - php5-dev
   - php-pear
-  - libyaml-dev  
+  - libyaml-dev
+
+####################################
+### Modules
+####################################
 apachemodules:
   - rewrite
-mysql:
-  port: 3306
-  password: vagrant
+  - ssl
 phpmodules:
   - php5-cli
   - php5-mysql
@@ -38,6 +47,44 @@ phpmodules:
   - php5-xmlrpc
   - php5-xdebug
   - libapache2-mod-php5
+
+####################################
+### Database
+####################################
+mysql:
+  port: 3306
+  password: vagrant
+
+####################################
+### SSL Certificate
+####################################
+ssl:
+  country: US
+  state: Pennsylvania
+  city: Pittsburgh
+  company: Fake Company
+  section: Information Technology
+  domain: 127.0.0.1
+  email: fake@example.com
+
+####################################
+### Debugging
+####################################
+errors:
+  - display_errors = On
+  - error_reporting = E_ALL
+  - display_startup_errors = On
+  - log_errors = On
+  - log_errors_max_len = 1024
+  - ignore_repeated_errors = Off
+  - ignore_repeated_source = Off
+  - report_memleaks = On
+  - html_errors = On
+  - docref_root = "http://www.php.net/manual/en/"
+  - docref_ext = .php
+  - error_log = /var/log/php_errors.log
+  - error_prepend_string = "<span style='color:red'>"
+  - error_append_string = "</span>"
 xdebug:
   - zend_extension=/usr/lib/php5/20121212/xdebug.so
   - xdebug.remote_enable = 1
@@ -46,22 +93,31 @@ xdebug:
   - xdebug.remote_connect_back = 1
   - xdebug.remote_handler = dbgp
   - xdebug.remote_mode = req
-  - xdebug.remote_log = /tmp/php5-xdebug.log
+  - xdebug.remote_log = /var/log/php5-xdebug.log
   - xdebug.profiler_enable = 0
   - xdebug.profiler_output_dir = /tmp
   - xdebug.profiler_output_name = cachegrind.out.%t.%p
-rewrite:
-  Directory: /var/www/
-  Options: Indexes FollowSymLinks MultiViews
-  AllowOverride: FileInfo
-  Order: allow,deny
-  Allow: from all
+
+####################################
+### Directory Rules
+####################################
+directory:
+  - Options Indexes FollowSymLinks MultiViews
+  - AllowOverride All
+  - Order allow,deny
+  - Allow from all
+
+####################################
+### Virtual Hosts
+####################################
 vhosts:
   -
     ServerName: localhost
     ServerAlias: localhost.dev www.localhost.dev default default.dev www.default.dev
     DocumentRoot: /var/www/default
+    ServerAdmin: webmaster@localhost
   -
-    ServerName: wordpress.dev
-    ServerAlias: www.wordpress.dev
-    DocumentRoot: /var/www/wordpress
+    ServerName: dev
+    ServerAlias: dev
+    DocumentRoot: /var/www
+    ServerAdmin: webmaster@localhost
