@@ -22,12 +22,14 @@ Features
 Installation
 --------
 
+These steps should get you going, but I've also created a video too: https://www.youtube.com/watch?v=TEAZnpM8RuA
+
 1. First, install Virtualbox, then Vagrant. You don't need Puppet on your host computer; it will exist on the linux virtual machine.
  * Virtualbox - https://www.virtualbox.org/wiki/Downloads
  * Vagrant - http://www.vagrantup.com/
 2. Next, download this repository. You could just download the .zip file and extract it where you keep your work, but cloning with Git is preferred. If you haven't learned Git yet, you really should.
  * Git - http://git-scm.com/downloads
- * Go to your project folder (on Windows, it's probably something like 'C:\Users\Scott\Documents\'), open a terminal/command promt, and type `git clone https://github.com/pigeontech/cptserver.git`.
+ * Go to your project folder (on Windows, it's probably something like 'C:\Users\Scott\Documents\'), open a terminal/command prompt, and type `git clone https://github.com/pigeontech/cptserver.git`.
  * This creates a copy on your computer, like 'C:\Users\Scott\Documents\cptserver\'.  Go into that folder.
 3. Open the config/config.yaml file in a text editor, and change anything that you feel needs changed. Right now, the only thing that probably matters is the mysql password. You can add virtual hosts later.  Also, if your computer is already using port 80, like if you run a media server to stream movies to your TV, you might need to change port 80 to something else, like 8080.
 4. Open a terminal in the repository folder. If the terminal is still open from the Git step, just type `cd cptserver`.
