@@ -16,6 +16,8 @@ Features
 * It also configures MySQL so that you can use local DB software on your computer, like MySQL Workbench.
 * It installs Composer globally in your path for you to easily manage PHP dependencies.
 * It installs and configures Xdebug so that you may debug with local IDEs, like PHPStorm and Netbeans.
+* **_New_** It allows you to configure PHP error reporting levels.
+* **_New_** It sets up SSL with a self-signed certificate so you can develop for HTTPS.
 
 Installation
 --------
