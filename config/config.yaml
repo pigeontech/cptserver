@@ -2,11 +2,11 @@ vagrant:
   box: parallels/ubuntu-13.10
   box_url: https://vagrantcloud.com/parallels/ubuntu-13.10
   box_port: 80
-  box_ip: 10.0.0.123
+  box_ip: 192.168.56.100
   ssh_shell: bash -c 'BASH_ENV=/etc/profile exec bash'
   ssh_username: vagrant
   vm_name: cptserver
-  vm_memory: 512
+  vm_memory: 1024
   vm_cpu: 80
   vm_webroot: www
   vm_docroot: /var/www
