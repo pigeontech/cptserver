@@ -53,7 +53,7 @@ xdebug:
 rewrite:
   Directory: /var/www/
   Options: Indexes FollowSymLinks MultiViews
-  AllowOverride: FileInfo
+  AllowOverride: Options
   Order: allow,deny
   Allow: from all
 vhosts:
