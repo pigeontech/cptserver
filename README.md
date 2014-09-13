@@ -1,5 +1,5 @@
-cptserver
-=========
+Vagrant - LAMP (Linux Apache MySQL PHP)
+========================================
 
 A web development environment using Ubuntu Server 13.10 x86_64, Vagrant, Virtualbox, and Puppet.
 
