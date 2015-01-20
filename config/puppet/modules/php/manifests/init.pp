@@ -13,7 +13,6 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 		loglevel => info
 	}
 
-
 	# Install PHP
 	package
 	{
@@ -42,6 +41,16 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 		ensure => present,
 		require => Package["php"],
 		content => $xdebug,
+		notify => Service['apache']
+	}
+
+	# Email
+	file
+	{
+		'/etc/php5/mods-available/sendmail.ini':
+		ensure => present,
+		require => Package["php"],
+		content => "sendmail_path = /usr/sbin/sendmail -t",
 		notify => Service['apache']
 	}
 

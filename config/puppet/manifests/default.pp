@@ -50,10 +50,18 @@ class
 
 class
 {
+	'ssmtp':
+	email => $email,
+	startmsg => "\n\n################## Email Setup ##################\n\n",
+	require => Class['php']
+}
+
+class
+{
 	'mysql':
 	password => $password,
 	startmsg => "\n\n################## MySQL Setup ##################\n\n",
-	require => Class['php']
+	require => Class['ssmtp']
 }
 
 class

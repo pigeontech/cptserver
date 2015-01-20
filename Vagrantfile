@@ -21,6 +21,12 @@ def getDirectory(directory, tabs)
 	return rewrite
 end
 
+# Handle email
+email = ""
+$vconfig['email'].each do |k, v|
+	email = email+k+"="+v+"\n"
+end
+
 # Handle vhosts
 vhosts = ""
 $vconfig['vhosts'].each_with_index do |v, k|
@@ -102,6 +108,7 @@ Vagrant.configure("2") do |config|
 			"vhosts" => vhosts,
 			"vhostsssl" => vhostsssl,
 			"opensslargs" => opensslargs,
+			"email" => email,
 			"xdebug" => $vconfig['xdebug'].join("\n")+"\n",
 			"errors" => $vconfig['errors'].join("\n")+"\n",
 			"password" => $vconfig['mysql']['password'],
