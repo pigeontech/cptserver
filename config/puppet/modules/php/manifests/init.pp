@@ -9,7 +9,7 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 	notify
 	{
 		'msg_php':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 
@@ -40,7 +40,7 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 		'/etc/php5/mods-available/xdebug.ini':
 		ensure => present,
 		require => Package["php"],
-		content => $xdebug,
+		content => "${xdebug}",
 		notify => Service['apache']
 	}
 
@@ -60,7 +60,7 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 		'/etc/php5/mods-available/errors.ini':
 		ensure => present,
 		require => Package["php"],
-		content => $errors,
+		content => "${errors}",
 		notify => Service['apache']
 	}
 
@@ -80,6 +80,6 @@ class php ($phpmodules_arr, $xdebug, $errors, $vhostsphp, $startmsg)
 		'/var/www/default/vhosts.txt':
 		ensure => present,
 		require => Package["php"],
-		content => $vhostsphp
+		content => "${vhostsphp}"
 	}
 }

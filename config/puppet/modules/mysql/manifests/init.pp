@@ -9,7 +9,7 @@ class mysql ($password, $startmsg)
 	notify
 	{
 		'msg_mysql':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 
@@ -64,8 +64,8 @@ class mysql ($password, $startmsg)
 	exec
 	{
 		"root-setup":
-		command => "mysqladmin -uroot password $password",
-		unless => "mysqladmin -uroot -p$password status",
+		command => "mysqladmin -uroot password ${password}",
+		unless => "mysqladmin -uroot -p${password} status",
 		require => Service['mysql']
 	}
 

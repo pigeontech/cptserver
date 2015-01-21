@@ -7,7 +7,7 @@ class composer ($startmsg)
 	notify
 	{
 		'msg_composer':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 

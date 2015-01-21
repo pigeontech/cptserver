@@ -7,7 +7,7 @@ class apache ($apachemodules_arr, $vhosts, $vhostsssl, $startmsg, $opensslargs)
 	notify
 	{
 		'msg_apache':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 
@@ -56,7 +56,7 @@ class apache ($apachemodules_arr, $vhosts, $vhostsssl, $startmsg, $opensslargs)
 	# Load Apache modules
 	define apache::loadmodule ($modname = $title) {
 		exec {
-			"/usr/sbin/a2enmod $modname":
+			"/usr/sbin/a2enmod ${modname}":
 			unless => "/bin/readlink -e /etc/apache2/mods-enabled/${modname}.load",
 			require => Package['apache'],
 			notify => Service['apache']

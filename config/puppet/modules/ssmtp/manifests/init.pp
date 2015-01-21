@@ -7,7 +7,7 @@ class ssmtp ($email, $startmsg)
 	notify
 	{
 		'msg_email':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 

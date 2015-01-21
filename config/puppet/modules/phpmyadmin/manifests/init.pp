@@ -9,7 +9,7 @@ class phpmyadmin ($startmsg)
 	notify
 	{
 		'msg_phpmyadmin':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 

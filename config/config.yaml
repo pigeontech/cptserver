@@ -4,8 +4,8 @@
 ### Only change these if you are experienced with VMs or are instructed to do so.
 ####################################
 vagrant:
-  box: precise32
-  box_url: http://files.vagrantup.com/precise32.box
+  box: ubuntu/trusty32
+  box_url: https://atlas.hashicorp.com/ubuntu/boxes/trusty32/versions/14.04/providers/virtualbox.box
   box_port: 80
   box_port_ssl: 443
   box_ip: 10.0.0.123
@@ -124,7 +124,7 @@ errors:
   - error_prepend_string = "<span style='color:red'>"
   - error_append_string = "</span>"
 xdebug:
-  - zend_extension=/usr/lib/php5/20121212/xdebug.so
+  - zend_extension = xdebug.so
   - xdebug.remote_enable = 1
   - xdebug.remote_host = localhost
   - xdebug.remote_port = 9000

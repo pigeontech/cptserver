@@ -8,7 +8,7 @@ class services ()
 	{ 
 		"apache":
 		name => apache2,
-	    enable => true,
+	  enable => true,
 		ensure => running,
 		require => Package["apache"],
 	}

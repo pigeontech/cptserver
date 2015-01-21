@@ -8,7 +8,7 @@ class syspackages ($syspackages_arr, $startmsg)
 	notify
 	{
 		'msg_syspackages':
-		message => $startmsg,
+		message => "${startmsg}",
 		loglevel => info
 	}
 
@@ -43,11 +43,11 @@ class syspackages ($syspackages_arr, $startmsg)
 		require => Package['ppa-purge']
 	}
 
-	# PHP 5.5 repo
+	# PHP 5.6 repo
 	exec 
 	{
 		'ondrej-php':
-		command => 'add-apt-repository -y ppa:ondrej/php5',
+		command => 'add-apt-repository -y ppa:ondrej/php5-5.6',
 		require => Exec['ondrej-apache']
 	}
 
