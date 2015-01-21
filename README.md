@@ -41,15 +41,16 @@ These steps should get you going, but I've also created a video too: https://www
 Virtual Hosts
 ---------
 
-You will probably build more than one website. Using localhost/foldername is too ugly. So we use virtual hosts.  A few have already been created in the config.yaml file.  There is another step you must do though.  On your actual computer, you have to edit the `hosts` file. On Windows, it's located at `C:\Windows\System32\drivers\etc`. You may need to open Notepad with admin privilages for it to allow you to save changes.
+You will probably build more than one website. Using `http://dev/foldername` is too ugly. So we use virtual hosts.  A few have already been created in the config.yaml file.  There is another step you must do though.  On your actual computer, you have to edit the `hosts` file. On Windows, it's located at `C:\Windows\System32\drivers\etc`. You may need to open Notepad with admin privilages for it to allow you to save changes.
 
-Make the file look like this:
+Make the file look something like this:
 ```
-127.0.0.1       localhost localhost.dev www.localhost.dev default default.dev www.default.dev
-127.0.0.1       wordpress.dev www.wordpress.dev
+127.0.0.1       localhost localhost.dev www.localhost.dev
+127.0.0.1       default default.dev www.default.dev
+127.0.0.1       dev dev.dev www.dev.dev
 ```
 
-By looking at config.yaml, you'll know that everything in the first line directs to the `default` folder, and everything in the second line directs to a `wordpress` folder.  That wordpress folder doesn't actually exist, it's just an example of how to add more websites.  If you want to challenge yourself, go ahead and create that folder, download Wordpress from http://wordpress.org, and try installing it. It's a good first project!
+By looking at config.yaml, you'll see that the `localhost` and `default` URLs all route to a folder named `default`, and the `dev` URLs route to the entire `www` directory listing. If you didn't add a custom localhost for a site you're building, like `wordpress` that routes to a `blog` folder, you could still access the `blog` folder via `http://dev/blog`.
 
 More Vagrant Commands
 ---------
