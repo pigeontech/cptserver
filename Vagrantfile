@@ -2,7 +2,9 @@
 ### Load Configuration Variables
 ####################################
 require 'yaml'
-$vconfig = YAML::load_file("config/config.yaml")
+
+dir = File.dirname(File.expand_path(__FILE__))
+$vconfig = YAML::load_file("#{dir}/config/config.yaml")
 
 # Handle directory
 def getDirectory(directory, tabs)
